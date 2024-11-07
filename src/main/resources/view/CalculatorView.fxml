@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.CalculatorController" spacing="15" alignment="CENTER" stylesheets="@../styles.css">
+
+    <!-- Header Section -->
+    <Label text="Indian Carbon Footprint Calculator" styleClass="header-label" />
+    <Label text="Calculate your environmental impact and discover ways to reduce and offset your carbon footprint" styleClass="sub-header-label" />
+
+    <!-- Main Content Area -->
+    <HBox spacing="20">
+
+        <!-- Transportation Section -->
+        <VBox styleClass="category-box">
+            <Label text="Transportation" styleClass="category-title" />
+            <HBox spacing="10">
+                <Label text="Car travel (km/month):" />
+                <TextField fx:id="carTravelField" promptText="Enter km" />
+            </HBox>
+            <HBox spacing="10">
+                <Label text="Public transport (km/month):" />
+                <TextField fx:id="publicTransportField" promptText="Enter km" />
+            </HBox>
+            <HBox spacing="10">
+                <Label text="Flights (trips/year):" />
+                <TextField fx:id="flightsField" promptText="Enter trips" />
+            </HBox>
+        </VBox>
+
+        <!-- Household Section -->
+        <VBox styleClass="category-box">
+            <Label text="Household" styleClass="category-title" />
+            <HBox spacing="10">
+                <Label text="Electricity usage (kWh/month):" />
+                <TextField fx:id="electricityUsageField" promptText="Enter kWh" />
+            </HBox>
+            <HBox spacing="10">
+                <Label text="LPG cylinders (cylinders/month):" />
+                <TextField fx:id="lpgUsageField" promptText="Enter cylinders" />
+            </HBox>
+            <HBox spacing="10">
+                <Label text="Waste generated (kg/month):" />
+                <TextField fx:id="wasteField" promptText="Enter kg" />
+            </HBox>
+        </VBox>
+
+        <!-- Lifestyle Section -->
+        <VBox styleClass="category-box">
+            <Label text="Lifestyle" styleClass="category-title" />
+            <HBox spacing="10">
+                <Label text="Meat consumption (servings/week):" />
+                <TextField fx:id="meatConsumptionField" promptText="Enter servings" />
+            </HBox>
+            <HBox spacing="10">
+                <Label text="Dairy consumption (servings/week):" />
+                <TextField fx:id="dairyConsumptionField" promptText="Enter servings" />
+            </HBox>
+            <HBox spacing="10">
+                <Label text="Buy local produce:" />
+                <CheckBox fx:id="buyLocalProduceCheckBox" />
+            </HBox>
+        </VBox>
+    </HBox>
+
+    <!-- Calculate Button -->
+    <Button text="Calculate My Footprint" onAction="#calculateFootprint" styleClass="calculate-button" />
+
+    <!-- Results and Tips Section -->
+    <Label fx:id="resultLabel" styleClass="result-label" />
+    <VBox fx:id="tipsContainer" spacing="10" visible="false" styleClass="tips-box">
+        <Label text="Tips to Reduce Your Carbon Footprint" styleClass="tips-title" />
+        <Label fx:id="tipsLabel" wrapText="true" />
+        <Hyperlink fx:id="learnMoreLink" text="Learn more about reducing your carbon footprint" onAction="#openLearnMoreLink" />
+    </VBox>
+</VBox>

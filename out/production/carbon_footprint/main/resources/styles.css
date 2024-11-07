@@ -1,0 +1,16 @@
+/* styles.css */
+
+/* Global Styling */
+* {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-padding: 5;
+}
+
+/* styles.css */
+.header-label { -fx-font-size: 24px; -fx-font-weight: bold; }
+.sub-header-label { -fx-font-size: 14px; -fx-text-fill: #666; }
+.category-box { -fx-border-color: #ccc; -fx-padding: 10; -fx-background-color: #f8f8f8; -fx-border-radius: 8; }
+.category-title { -fx-font-size: 18px; -fx-font-weight: bold; }
+.calculate-button { -fx-background-color: #4CAF50; -fx-text-fill: white; -fx-padding: 10; }
+.result-label { -fx-font-size: 16px; -fx-padding: 10; }
+.tips-box { -fx-background-color: #e7f7e7; -fx-padding: 10; -fx-border-radius: 5; }

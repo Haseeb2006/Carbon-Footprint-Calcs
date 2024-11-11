@@ -1,11 +1,18 @@
 package controllers;
 
+import javafx.animation.RotateTransition;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.chart.PieChart;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import models.CarbonFootprintModel;
 
 import java.awt.Desktop;
@@ -13,6 +20,7 @@ import java.net.URI;
 
 public class CalculatorController {
 
+    // Original UI elements
     @FXML private TextField carTravelField;
     @FXML private TextField publicTransportField;
     @FXML private TextField flightsField;
@@ -26,6 +34,19 @@ public class CalculatorController {
     @FXML private VBox tipsContainer;
     @FXML private Label tipsLabel;
     @FXML private Hyperlink learnMoreLink;
+
+    // New UI elements for added features
+    @FXML private PieChart emissionPieChart;
+    @FXML private ImageView earthImageView;
+    @FXML private Button growTreesButton;
+
+    public void initialize() {
+        // Initialize the Earth image for "healing" effect
+        earthImageView.setImage(new Image(getClass().getResource("/earth.png").toExternalForm()));
+
+        // Hide the pie chart initially
+        emissionPieChart.setVisible(true);
+    }
 
     @FXML
     private void calculateFootprint() {
@@ -50,6 +71,9 @@ public class CalculatorController {
 
             // Display Tips
             displayTips(totalFootprint);
+
+            // Update and show pie chart based on calculated data
+            updatePieChart(carTravel, publicTransport, flights, electricity, lpgUsage);
         } catch (NumberFormatException e) {
             resultLabel.setText("Please enter valid numbers for all fields.");
             resultLabel.setStyle("-fx-text-fill: red;");
@@ -84,5 +108,24 @@ public class CalculatorController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void updatePieChart(double carTravel, double publicTransport, double flights, double electricity, double lpgUsage) {
+        emissionPieChart.setData(FXCollections.observableArrayList(
+                new PieChart.Data("Car Travel", carTravel),
+                new PieChart.Data("Public Transport", publicTransport),
+                new PieChart.Data("Flights", flights),
+                new PieChart.Data("Electricity", electricity),
+                new PieChart.Data("LPG Usage", lpgUsage)
+        ));
+        emissionPieChart.setVisible(true);
+    }
+
+    @FXML
+    private void onGrowTreesClicked() {
+        // Rotate animation for Earth healing effect
+        RotateTransition earthRotate = new RotateTransition(Duration.seconds(1), earthImageView);
+        earthRotate.setByAngle(20);
+        earthRotate.play();
     }
 }
